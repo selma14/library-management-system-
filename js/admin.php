@@ -10,8 +10,20 @@
    }
    require '../includes/db-inc.php';
    include "../includes/header.php";
-   
-   ?>
+   include "../css/styling.css";
+   require '../includes/snippet.php';
+
+   if (isset($_POST['submit'])) {
+		$id = trim($_POST['del_btn']);
+		$sql = "DELETE from subscribers where personId = '$id'";
+		$query = mysqli_query($conn, $sql);
+
+		if ($query) {
+			echo "<script>alert('Subscriber Deleted!')</script>";
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -54,7 +66,7 @@
               <a class="nav-link" href="users.php">Admins</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="viewstudents.php">Students</a>
+              <a class="nav-link" href="#subscribers">subscribers</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="borrowedbooks.php">Issued books</a>
@@ -88,6 +100,58 @@
           </div>
         </section>
         <!-- //HOME-->
+        <!-- STUDENTS -->
+        <section id="subscribers" class="full-height px-lg-5">
+          <div class="container">
+               <table class="table table-bordered">
+                  <thead>
+                        <tr>
+                           <th>#</th> 
+                           <th>ID No</th>
+                           <th>FirstName</th>
+                           <th>LastName</th>
+                           <th>Email</th>
+                           <th>Address</th>
+                           <th>Status</th>
+                           <th>BooksNumber</th>		             
+                           <th>REMOVE</th>
+                        </tr>    
+                  </thead>    
+                  <?php 
+
+                  $sql = "SELECT * FROM subscribers";
+                  $query = mysqli_query($conn, $sql);
+                  $counter = 1;
+                  while ( $row = mysqli_fetch_assoc($query)) {        	
+                  ?>
+                  <tbody> 
+                     <tr> 
+                     <td><?php echo $counter++; ?></td>
+                     <td><?php echo $row['personId']; ?></td>
+                     <td><?php echo $row['firstName']; ?></td>
+                     <td><?php echo $row['lastName']; ?></td>
+                     <td><?php echo $row['email']; ?></td>
+                     <td><?php echo $row['address']; ?></td>
+                     <td><?php echo $row['status']; ?></td>
+                     <td><?php echo $row['booksNumber']; ?></td>
+                     
+                     <td>
+                        <form action="admin.php" method="post">
+                           <input type="hidden" value="<?php echo $row['personId']; ?>" name="del_btn">
+                           <button name="submit" style="background-color: #660066 ; color:white;  border-radius: 8px" >DELETE</button>
+                        </form> 
+                     </td>
+                     </tr> 
+                  
+                  </tbody> 
+                  <?php } ?>
+               </table>
+               <div style="margin-top : 20px ; margin-left : -15px">
+                  <a href="addstudent.php"><button class="btn btn-success col-lg-3 col-md-4 col-sm-11 col-xs-11 button" style="margin-left: 15px;margin-bottom: 5px"><span class="glyphicon glyphicon-plus-sign"></span> Add Student</button></a>
+               </div>
+            </div>
+        </section>
+        <!-- //STUDENTS -->
         <!-- //CONTENT WRAPPER -->
 
     <script src="../javascript/bootstrap.bundle.min.js"></script>
