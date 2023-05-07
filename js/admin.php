@@ -10,7 +10,6 @@
    }
    require '../includes/db-inc.php';
    include "../includes/header.php";
-   include "../css/styling.css";
    require '../includes/snippet.php';
 
    if (isset($_POST['submit'])) {
@@ -147,7 +146,7 @@
                   <?php } ?>
                </table>
                <div style="margin-top : 20px ; margin-left : -15px">
-                  <a href="addstudent.php"><button class="btn btn-success col-lg-3 col-md-4 col-sm-11 col-xs-11 button" style="margin-left: 15px;margin-bottom: 5px"><span class="glyphicon glyphicon-plus-sign"></span> Add Student</button></a>
+                  <a href="addstudent.php"><button  style="margin-left: 15px;margin-bottom: 5px; background-color: #660066; width : 100px ;border-radius: 8px"><span class="glyphicon glyphicon-plus-sign"></span> Add Student</button></a>
                </div>
             </div>
         </section>
