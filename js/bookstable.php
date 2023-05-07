@@ -13,15 +13,18 @@
    include "../includes/header.php";
 
    if(isset($_POST['del'])){
-        $sql_del = "DELETE from books where BookId = $id"; 
-        $error = false;
-        $result = mysqli_query($conn,$sql_del);
-            if ($result)
-            {
-            $error = true; //delete successful
-            }			
+    $id = $_POST['id'];
+    $sql_del = "DELETE from books where BookId = ?";
+    $error = false;
+    $stmt = mysqli_prepare($conn, $sql_del);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    $result = mysqli_stmt_execute($stmt);
+    if ($result)
+    {
+        $error = true; //delete successful
+    }			
+}
 
-   }
    
 ?>
 <!DOCTYPE html>
@@ -30,7 +33,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>library management system</title>
+    <title>Books List</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/aos.css" />
     <link rel="stylesheet" href="../css/line-awesome.min.css" />
@@ -83,18 +86,22 @@
     <!-- CONTENT WRAPPER -->
     <div id="content-wrapper" class="table-wrapper">
         <!-- HOME -->
-        <div class="panel-heading">
+        <h1 class="display-4 fw-bold mt-5" data-aos="fade-up">
+                  <span class="text-brand">Books List: </span> 
+        </h1>
+        <p class="lead mt-2 mb-4 text-light" data-aos="fade-up" data-aos-delay="300">
+                    <i class="las la-book-open"></i>
+                     Discover Your Next Read
+                </p>
+
         <?php if(isset($error)===true) { ?>
          <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Record Deleted Successfully!</strong>
          </div>
          <?php } ?>
-         <div class="row">
-            <a href="addbook.php"><button class="btn btn-success col-lg-3 col-md-4 col-sm-11 col-xs-11 button" style="margin-left: 15px;margin-bottom: 5px"><span class="glyphicon glyphicon-plus-sign"></span> Add Book</button></a>
-         </div>
-      </div>
-      <table class="table table-bordered">
+  
+      <table class="table table-bordered bg-white" style="--bs-bg-opacity: .3;">
          <thead>
             <tr>
                <th>BookId</th>
@@ -127,6 +134,9 @@
          <?php 	}
             ?>
       </table>
+      <div class="row">
+            <a href="addbook.php"><button class="btn btn-success col-lg-2 col-md-4 col-sm-11 col-xs-11 button mt-3" style="font-size: 13px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Book</button></a>
+      </div>
         <!-- //HOME-->
         <!-- //CONTENT WRAPPER -->
 
