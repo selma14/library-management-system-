@@ -22,7 +22,19 @@
     if ($result)
     {
         $error = true; //delete successful
-    }			
+    }
+}
+    if(isset($_GET['query'])) {
+      $search_query =$_GET['query'];
+      $sql = "SELECT * FROM books WHERE bookId LIKE '%$search_query%' OR bookTitle LIKE '%$search_query%' OR author LIKE '%$search_query%' OR publisherName LIKE '%$search_query%'";
+      $result = mysqli_query($conn, $sql);
+      if (mysqli_num_rows($result) > 0) {
+        echo "works";
+      } else {
+        echo "No results found.";
+      }
+}else {
+  echo "No search query entered.";
 }
 
    
@@ -39,8 +51,10 @@
     <link rel="stylesheet" href="../css/line-awesome.min.css" />
     <link rel="stylesheet" href="../css/styling.css" />
     <link rel="stylesheet" href="../css/stylesIbti.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
   </head>
-  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar">
+  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar"  style="background-color: #B4A0E5;">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container flex-lg-column">
         <a class="navbar-brand mx-lg-auto mb-lg-4" href="admin.php">
@@ -87,13 +101,22 @@
     <div id="content-wrapper" class="table-wrapper">
         <!-- HOME -->
         <h1 class="display-4 fw-bold mt-5" data-aos="fade-up">
-                  <span class="text-brand">Books List: </span> 
+                  <span class="text-brand" style="color:#FCEC52;">Books List: </span> 
         </h1>
         <p class="lead mt-2 mb-4 text-light" data-aos="fade-up" data-aos-delay="300">
                     <i class="las la-book-open"></i>
                      Discover Your Next Read
-                </p>
+        </p>
 
+        <!-- SEARCH BAR -->
+        <form method='get' action="bookstable.php" class="form-inline mb-4">
+          <input type="text" name="query" class="form-control border-0 rounded-pill shadow-sm" type="search" placeholder="Search..." aria-label="Search" style="width: 92%;">
+          <button class="btn btn-secondary mx-1 rounded-pill border-0 shadow-sm " type="submit" style="background-color:#9b339c">
+            <i class="bi bi-search" style="height:100px;"></i>
+          </button>
+        </form>
+        <!--// SEARCH BAR -->
+        
         <?php if(isset($error)===true) { ?>
          <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -101,8 +124,8 @@
          </div>
          <?php } ?>
   
-      <table class="table table-bordered bg-white" style="--bs-bg-opacity: .3;">
-         <thead>
+      <table class="table table-bordered bg-white" style="--bs-bg-opacity: .3; border-color:black;text-align:center">
+         <thead style="background: linear-gradient(rgba(192, 43, 185, 0.8), rgba(73, 4, 90, 0.8)) !important;background-size: cover;background-position: center;color:white;">
             <tr>
                <th>BookId</th>
                <th>bookTitle</th>
@@ -110,7 +133,7 @@
                <th>publisherName</th>
                <th>pagesNumber</th>
                <th>copiesNumber</th>
-               <th>Delete</th>
+               <th></th>
             </tr>
          </thead>
          <?php 
@@ -119,7 +142,7 @@
             $query = mysqli_query($conn, $sql); 
             $counter = 1;
             while ($row = mysqli_fetch_array($query)) { ?>
-         <tbody>
+         <tbody style="font-weight:bold;">
             <td><?php echo $row['bookId']; ?></td>
             <td><?php echo $row['bookTitle']; ?></td>
             <td><?php echo $row['author']; ?></td>
@@ -128,7 +151,12 @@
             <td><?php echo $row['copiesNumber']; ?></td>
             <form method='post' action='bookstable.php'>
                <input type='hidden' value="<?php echo $row['bookId']; ?>" name='id'>
-               <td><button name='del' type='submit' value='Delete' class='btn btn-warning'>DELETE</button></td>
+               <td class="d-grid gap-2 d-md-block">
+                <button name='del' type='submit' value='Delete' class='btn btn-warning'>DELETE</button>
+                <button class="btn btn-sm btn-secondary">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                </td>
             </form>
          </tbody>
          <?php 	}
@@ -138,10 +166,11 @@
             <a href="addbook.php"><button class="btn btn-success col-lg-2 col-md-4 col-sm-11 col-xs-11 button mt-3" style="font-size: 13px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Book</button></a>
       </div>
         <!-- //HOME-->
-        <!-- //CONTENT WRAPPER -->
+    <!-- //CONTENT WRAPPER -->
 
     <script src="../javascript/bootstrap.bundle.min.js"></script>
     <script src="../javascript/aos.js"></script>
     <script src="../javascript/main.js"></script>
+    <script src="bookstable.js"></script>
   </body>
 </html>

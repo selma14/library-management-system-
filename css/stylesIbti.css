@@ -3,6 +3,7 @@
     margin-right: 3%;
 }
 
-.addbookInput::placeholder{
+input::placeholder{
     font-size: 15px;
+    padding-left: 2%;
 }

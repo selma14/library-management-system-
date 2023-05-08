@@ -4,16 +4,16 @@
 
    if(isset($_POST['submit'])){
    
-    $title = sanitize(trim($_POST['title']));
-    $author = sanitize(trim($_POST['author']));
-    $id = sanitize(trim($_POST['id']));
-    $publisher = sanitize(trim($_POST['publisher']));
-    $copies = sanitize(trim($_POST['copies']));
-    $pages = sanitize(trim($_POST['pages']));
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $id = $_POST['id'];
+    $publisher = $_POST['publisher'];
+    $copies = $_POST['copies'];
+    $pages = $_POST['pages'];
 
     $sql = "INSERT INTO books(bookTitle, author, bookId, publisherName, copiesNumber, pagesNumber)
                  values ('$title','$author','$id', '$publisher','$copies','$pages')";
-
+    
     $query = mysqli_query($conn, $sql);
 
     if($query){
@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="../css/styling.css" />
     <link rel="stylesheet" href="../css/stylesIbti.css" />
   </head>
-  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar d-flex align-items-center justify-content-center" style="background-color: #d067f9;">
+  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar d-flex align-items-center justify-content-center" style="background-color: #B4A0E5;">
   <div class="container  col-lg-9 col-md-11 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0  " style="margin-top: 20px">
    <div style="font-size: 13px;" class="jumbotron login2 col-lg-10 col-md-11 col-sm-12 col-xs-12">
       <p class="page-header text-dark" style="text-align: center; font-weight: bold; font-size: 23px;">ADD BOOK</p>
@@ -86,7 +86,7 @@
             </div>
             <div class="form-group">
                <div class="col-sm-10 d-flex justify-content-end">
-                  <button  name="submit" class="btn col-lg-4 mt-5" style="font-size: 13px;background-color: #dd85ff;" data-toggle="modal" data-target="#info" >
+                  <button  name="submit" class="btn col-lg-4 mt-5" style="font-size: 13px;background-color: #B4A0E5;" data-toggle="modal" data-target="#info" >
                   ADD BOOK
                   </button>
                </div>
