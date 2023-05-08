@@ -33,8 +33,6 @@
       } else {
         echo "No results found.";
       }
-}else {
-  echo "No search query entered.";
 }
 
    
@@ -144,18 +142,15 @@
             while ($row = mysqli_fetch_array($query)) { ?>
          <tbody style="font-weight:bold;">
             <td><?php echo $row['bookId']; ?></td>
-            <td><?php echo $row['bookTitle']; ?></td>
-            <td><?php echo $row['author']; ?></td>
-            <td><?php echo $row['publisherName']; ?></td>
-            <td><?php echo $row['pagesNumber']; ?></td>
-            <td><?php echo $row['copiesNumber']; ?></td>
+            <td class="editable" data-column="bookTitle"><?php echo $row['bookTitle']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
+            <td class="editable" data-column="author"><?php echo $row['author']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
+            <td class="editable" data-column="publisherName"><?php echo $row['publisherName']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
+            <td class="editable" data-column="pagesNumber"><?php echo $row['pagesNumber']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
+            <td class="editable" data-column="copiesNumber"><?php echo $row['copiesNumber']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
             <form method='post' action='bookstable.php'>
                <input type='hidden' value="<?php echo $row['bookId']; ?>" name='id'>
-               <td class="d-grid gap-2 d-md-block">
+               <td>
                 <button name='del' type='submit' value='Delete' class='btn btn-warning'>DELETE</button>
-                <button class="btn btn-sm btn-secondary">
-                  <i class="bi bi-pencil"></i>
-                </button>
                 </td>
             </form>
          </tbody>
