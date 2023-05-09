@@ -42,7 +42,7 @@
                <strong>Record added Successfully!</strong>
             </div>
             <?php } ?>
-            <p class="page-header" style="text-align: center"><b>ADD STUDENT</b></p>
+            <p class="page-header" style="text-align: center"><b>ADD SUBSCRIBER</b></p>
             <div class="container">
                <form class="form-horizontal" role="form" action="addstudent.php" method="post" enctype="multipart/form-data">
                   <div class="form-group">
@@ -54,7 +54,7 @@
                   <div class="form-group">
                      <label for="Password" class="col-sm-2 control-label">ID NO</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" name="personId" placeholder="ID Number" id="personId" required>
+                        <input type="number" class="form-control" name="personId" placeholder="ID Number" id="personId" required>
                      </div>
                   </div>
                   <div class="form-group">
@@ -78,7 +78,7 @@
                   <div class="form-group">
                      <label for="Password" class="col-sm-2 control-label">BOOKS NUMBER</label>
                      <div class="col-sm-10">
-                        <input type="text" class="form-control" name="booksNumber" placeholder="books number" id="booksNumber" required>
+                        <input type="number" class="form-control" name="booksNumber" placeholder="books number" id="booksNumber" required max="5">
                      </div>
                   </div>
                   <div class="form-group">
@@ -90,7 +90,7 @@
                   <div class="form-group">
                      <div class="col-sm-offset-2 col-sm-10">
                         <button   data-toggle="modal" data-target="#info" name="submit" style="background-color: #cc59f9ea; color:white;  border-radius: 8px; margin-left: 120px; margin-top: 20px; " >
-                        ADD MEMBER
+                        ADD SUBSCRIBER
                         </button>                            
                      </div>
                   </div>

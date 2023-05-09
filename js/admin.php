@@ -22,6 +22,9 @@
 		}
 	}
 ?>
+<script>
+
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -62,9 +65,6 @@
               <a class="nav-link" href="bookstable.php">Books</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="users.php">Admins</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#subscribers">subscribers</a>
             </li>
             <li class="nav-item">
@@ -100,22 +100,28 @@
         </section>
         <!-- //HOME-->
         <!-- STUDENTS -->
+        
         <section id="subscribers" class="full-height px-lg-5">
           <div class="container">
-               <table class="table table-bordered">
+               <input type="text" id="search-input" onkeyup="searchTable()" placeholder="  Search..." style="border-radius: 8px; width: 200px; color:black">
+               <button id="search-btn" onkeyup="searchTable()" style="background-color: #660066; border-radius: 8px">Search</button>
+               <br></br>
+               <table class="table table-bordered" id="myTable">
                   <thead>
                         <tr>
                            <th>#</th> 
                            <th>ID No</th>
-                           <th>FirstName</th>
-                           <th>LastName</th>
+                           <th class="searchable">FirstName</th>
+                           <th class="searchable">LastName</th>
                            <th>Email</th>
                            <th>Address</th>
                            <th>Status</th>
                            <th>BooksNumber</th>		             
                            <th>REMOVE</th>
+                           <th>UPDATE</th>
                         </tr>    
-                  </thead>    
+                  </thead> 
+                  <tbody>   
                   <?php 
 
                   $sql = "SELECT * FROM subscribers";
@@ -123,12 +129,12 @@
                   $counter = 1;
                   while ( $row = mysqli_fetch_assoc($query)) {        	
                   ?>
-                  <tbody> 
+                   
                      <tr> 
                      <td><?php echo $counter++; ?></td>
                      <td><?php echo $row['personId']; ?></td>
-                     <td><?php echo $row['firstName']; ?></td>
-                     <td><?php echo $row['lastName']; ?></td>
+                     <td class="searchable"><?php echo $row['firstName']; ?></td>
+                     <td class="searchable"><?php echo $row['lastName']; ?></td>
                      <td><?php echo $row['email']; ?></td>
                      <td><?php echo $row['address']; ?></td>
                      <td><?php echo $row['status']; ?></td>
@@ -140,11 +146,47 @@
                            <button name="submit" style="background-color: #660066 ; color:white;  border-radius: 8px" >DELETE</button>
                         </form> 
                      </td>
+                     <td>
+                        <form method="post" action="modify_entry.php">
+                            <input type="hidden" name="personId" value="<?php echo $row['personId']; ?>">
+                            <button type="submit" style="background-color: #660066 ; color:white;  border-radius: 8px">Update</button>
+                        </form>
+                     </td>
                      </tr> 
-                  
+                     <?php } ?>
                   </tbody> 
-                  <?php } ?>
+                  
                </table>
+               <script>
+                  function searchTable() {
+                    // Declare variables
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("search-input");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+
+                    // Loop through all table rows, and hide those that don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                      // Only search in firstName and lastName columns
+                      td_firstName = tr[i].getElementsByTagName("td")[2];
+                      td_lastName = tr[i].getElementsByTagName("td")[3];
+                      if (td_firstName || td_lastName) {
+                        txtValue_firstName = td_firstName.textContent || td_firstName.innerText;
+                        txtValue_lastName = td_lastName.textContent || td_lastName.innerText;
+                        if (
+                          txtValue_firstName.toUpperCase().indexOf(filter) > -1 ||
+                          txtValue_lastName.toUpperCase().indexOf(filter) > -1
+                        ) {
+                          tr[i].style.display = "";
+                        } else {
+                          tr[i].style.display = "none";
+                        }
+                      }
+                    }
+                  }
+
+               </script>
                <div style="margin-top : 20px ; margin-left : -15px">
                   <a href="addstudent.php"><button  style="margin-left: 15px;margin-bottom: 5px; background-color: #660066; width : 100px ;border-radius: 8px"><span class="glyphicon glyphicon-plus-sign"></span> Add Student</button></a>
                </div>
@@ -156,5 +198,6 @@
     <script src="../javascript/bootstrap.bundle.min.js"></script>
     <script src="../javascript/aos.js"></script>
     <script src="../javascript/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>
