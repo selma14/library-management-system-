@@ -120,7 +120,8 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>Record Deleted Successfully!</strong>
          </div>
-         <?php } ?>
+         <?php } 
+         $error = false;?>
   
       <table class="table table-bordered bg-white" style="--bs-bg-opacity: .3; border-color:black;text-align:center">
          <thead style="background: linear-gradient(rgba(192, 43, 185, 0.8), rgba(73, 4, 90, 0.8)) !important;background-size: cover;background-position: center;color:white;">
@@ -142,11 +143,11 @@
             while ($row = mysqli_fetch_array($query)) { ?>
          <tbody style="font-weight:bold;">
             <td><?php echo $row['bookId']; ?></td>
-            <td class="editable" data-column="bookTitle"><?php echo $row['bookTitle']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
-            <td class="editable" data-column="author"><?php echo $row['author']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
-            <td class="editable" data-column="publisherName"><?php echo $row['publisherName']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
-            <td class="editable" data-column="pagesNumber"><?php echo $row['pagesNumber']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
-            <td class="editable" data-column="copiesNumber"><?php echo $row['copiesNumber']; ?><i class="bi bi-pencil" style="display:none;"></i></td>
+            <td class="editable" data-column="bookTitle"><?php echo $row['bookTitle']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
+            <td class="editable" data-column="author"><?php echo $row['author']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
+            <td class="editable" data-column="publisherName"><?php echo $row['publisherName']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
+            <td class="editable" data-column="pagesNumber"><?php echo $row['pagesNumber']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
+            <td class="editable" data-column="copiesNumber"><?php echo $row['copiesNumber']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
             <form method='post' action='bookstable.php'>
                <input type='hidden' value="<?php echo $row['bookId']; ?>" name='id'>
                <td>
@@ -158,7 +159,7 @@
             ?>
       </table>
       <div class="row">
-            <a href="addbook.php"><button class="btn btn-success col-lg-2 col-md-4 col-sm-11 col-xs-11 button mt-3" style="font-size: 13px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Book</button></a>
+            <a href="addbook.php" class="col-lg-2 col-md-4 col-sm-11 col-xs-11"><button class="btn btn-success button mt-3" style="font-size: 13px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Book</button></a>
       </div>
         <!-- //HOME-->
     <!-- //CONTENT WRAPPER -->
@@ -166,6 +167,6 @@
     <script src="../javascript/bootstrap.bundle.min.js"></script>
     <script src="../javascript/aos.js"></script>
     <script src="../javascript/main.js"></script>
-    <script src="bookstable.js"></script>
+    <script src="../javascript/booktable.js"></script>
   </body>
 </html>
