@@ -84,12 +84,10 @@
                   <input type="text" class="addbookInput form-control" name="copies" placeholder="Enter Copies Number" id="password" required>
                </div>
             </div>
-            <div class="form-group">
-               <div class="col-sm-10 d-flex justify-content-end">
+            <div class="modal-footer">
                   <button  name="submit" class="btn col-lg-4 mt-5" style="font-size: 13px;background-color: #B4A0E5;" data-toggle="modal" data-target="#info" >
                   ADD BOOK
                   </button>
-               </div>
             </div>
          </form>
       </div>

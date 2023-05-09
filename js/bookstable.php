@@ -79,9 +79,6 @@
               <a class="nav-link" href="bookstable.php">Books</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="users.php">Admins</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="viewstudents.php">Students</a>
             </li>
             <li class="nav-item">
@@ -108,7 +105,7 @@
 
         <!-- SEARCH BAR -->
         <form method='get' action="bookstable.php" class="form-inline mb-4">
-          <input type="text" name="query" class="form-control border-0 rounded-pill shadow-sm" type="search" placeholder="Search..." aria-label="Search" style="width: 92%;">
+          <input type="text" name="query" class="form-control border-0 rounded-pill shadow-sm" type="search" placeholder="Search..." aria-label="Search" style="width: 92%;" id="search-input">
           <button class="btn btn-secondary mx-1 rounded-pill border-0 shadow-sm " type="submit" style="background-color:#9b339c">
             <i class="bi bi-search" style="height:100px;"></i>
           </button>
@@ -123,7 +120,7 @@
          <?php } 
          $error = false;?>
   
-      <table class="table table-bordered bg-white" style="--bs-bg-opacity: .3; border-color:black;text-align:center">
+      <table id="myTable" class="table table-bordered bg-white" style="--bs-bg-opacity: .3; border-color:black;text-align:center">
          <thead style="background: linear-gradient(rgba(192, 43, 185, 0.8), rgba(73, 4, 90, 0.8)) !important;background-size: cover;background-position: center;color:white;">
             <tr>
                <th>BookId</th>
@@ -132,7 +129,8 @@
                <th>publisherName</th>
                <th>pagesNumber</th>
                <th>copiesNumber</th>
-               <th></th>
+               <th>remove</th>
+               <th>edit</th>
             </tr>
          </thead>
          <?php 
@@ -152,6 +150,12 @@
                <input type='hidden' value="<?php echo $row['bookId']; ?>" name='id'>
                <td>
                 <button name='del' type='submit' value='Delete' class='btn btn-warning'>DELETE</button>
+                </td>
+            </form>
+            <form method='post' action='modifyBooks.php'>
+               <input type='hidden' value="<?php echo $row['bookId']; ?>" name='id'>
+               <td>
+                <button name='edit' type='submit' value='Edit' class='btn btn-info'>EDIT</button>
                 </td>
             </form>
          </tbody>
