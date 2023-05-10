@@ -9,7 +9,7 @@ $row = mysqli_fetch_assoc($query);
 ?>
 
 <html>
-<body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar d-flex align-items-center justify-content-center" style="background-color: #A42AB0;">
+<body class="d-flex align-items-center justify-content-center" style="background-color: #A42AB0;">
   <div class="container  col-lg-9 col-md-11 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0  " style="margin-top: 20px">
    <div style="font-size: 13px;" class="jumbotron login2 col-lg-10 col-md-11 col-sm-12 col-xs-12">
       <p class="page-header text-dark" style="text-align: center; font-weight: bold; font-size: 23px;">UPDATE BOOK</p>

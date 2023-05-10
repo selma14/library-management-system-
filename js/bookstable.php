@@ -43,7 +43,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Books List</title>
+    <title>Books Table</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/aos.css" />
     <link rel="stylesheet" href="../css/line-awesome.min.css" />
@@ -52,7 +52,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
 
   </head>
-  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar"  style="background-color: #B4A0E5;">
+  <body style="background-color: #B4A0E5;">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container flex-lg-column">
         <a class="navbar-brand mx-lg-auto mb-lg-4" href="admin.php">
@@ -120,7 +120,7 @@
          <?php } 
          $error = false;?>
   
-      <table id="myTable" class="table table-bordered bg-white" style="--bs-bg-opacity: .3; border-color:black;text-align:center">
+      <table id="myTable" class="table table-bordered bg-white" style="--bs-bg-opacity: .3; text-align:center">
          <thead style="background: linear-gradient(rgba(192, 43, 185, 0.8), rgba(73, 4, 90, 0.8)) !important;background-size: cover;background-position: center;color:white;">
             <tr>
                <th>BookId</th>
@@ -141,11 +141,11 @@
             while ($row = mysqli_fetch_array($query)) { ?>
          <tbody style="font-weight:bold;">
             <td><?php echo $row['bookId']; ?></td>
-            <td class="editable" data-column="bookTitle"><?php echo $row['bookTitle']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
-            <td class="editable" data-column="author"><?php echo $row['author']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
-            <td class="editable" data-column="publisherName"><?php echo $row['publisherName']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
-            <td class="editable" data-column="pagesNumber"><?php echo $row['pagesNumber']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
-            <td class="editable" data-column="copiesNumber"><?php echo $row['copiesNumber']; ?><i class="bi bi-pencil" style="display:none; curser:pointer;"></i></td>
+            <td><?php echo $row['bookTitle']; ?></td>
+            <td><?php echo $row['author']; ?></td>
+            <td><?php echo $row['publisherName']; ?></td>
+            <td><?php echo $row['pagesNumber']; ?></td>
+            <td><?php echo $row['copiesNumber']; ?></td>
             <form method='post' action='bookstable.php'>
                <input type='hidden' value="<?php echo $row['bookId']; ?>" name='id'>
                <td>

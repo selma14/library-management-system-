@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="../css/styling.css" />
     <link rel="stylesheet" href="../css/stylesIbti.css" />
   </head>
-  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar d-flex align-items-center justify-content-center" style="background-color: #B4A0E5;">
+  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="d-flex align-items-center justify-content-center" style="background-color: #B4A0E5;">
   <div class="container  col-lg-9 col-md-11 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0  " style="margin-top: 20px">
    <div style="font-size: 13px;" class="jumbotron login2 col-lg-10 col-md-11 col-sm-12 col-xs-12">
       <p class="page-header text-dark" style="text-align: center; font-weight: bold; font-size: 23px;">ADD BOOK</p>
