@@ -11,8 +11,8 @@
     $copies = $_POST['copies'];
     $pages = $_POST['pages'];
 
-    $sql = "INSERT INTO books(bookTitle, author, bookId, publisherName, copiesNumber, pagesNumber)
-                 values ('$title','$author','$id', '$publisher','$copies','$pages')";
+    $sql = "INSERT INTO books(bookTitle, author,  publisherName, copiesNumber, pagesNumber)
+                 values ('$title','$author', '$publisher','$copies','$pages')";
     
     $query = mysqli_query($conn, $sql);
 
