@@ -15,7 +15,7 @@ $row = mysqli_fetch_assoc($query);
                 <p class="page-header" style="margin-left: 30px"><b>UPDATE SUBSCRIBER</b></p>
                 <br></br>
                 <body style="margin-left: 500px">
-                    <form method="POST" action="update_entry.php" role="form"  >
+                    <form method="POST" action="update_entry_subscriber.php" role="form"  >
                         <input type="hidden" name="personId" value="<?php echo $row['personId']; ?>">
                         <div class="form-group">
                             <label for="firstName" >First Name:</label>

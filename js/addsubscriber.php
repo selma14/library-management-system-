@@ -5,7 +5,7 @@
    
    if(isset($_POST['submit'])) {
    
-       $personId = sanitize(trim($_POST['personId']));
+       
        $firstName = sanitize(trim($_POST['firstName']));
        $lastName = sanitize(trim($_POST['lastName']));
        $email = sanitize(trim($_POST['email']));
@@ -15,7 +15,7 @@
    
    
    
-         $sql = "INSERT INTO subscribers( personId, firstName, lastName, email, address, status, booksNumber) VALUES ('$personId', '$firstName', '$lastName', '$email', '$address', '$status', '$booksNumber' ) ";
+         $sql = "INSERT INTO subscribers(  firstName, lastName, email, address, status, booksNumber) VALUES ( '$firstName', '$lastName', '$email', '$address', '$status', '$booksNumber' ) ";
    
          $query = mysqli_query($conn, $sql);
          $error = false;
@@ -44,19 +44,14 @@
             <?php } ?>
             <p class="page-header" style="text-align: center"><b>ADD SUBSCRIBER</b></p>
             <div class="container">
-               <form class="form-horizontal" role="form" action="addstudent.php" method="post" enctype="multipart/form-data">
+               <form class="form-horizontal" role="form" action="addsubscriber.php" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                      <label for="Username" class="col-sm-2 control-label">FIRST NAME</label>
                      <div class="col-sm-10">
                         <input type="text" class="form-control" name="firstName" placeholder="first Name" id="firstName" required>
                      </div>
                   </div>
-                  <div class="form-group">
-                     <label for="Password" class="col-sm-2 control-label">ID NO</label>
-                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="personId" placeholder="ID Number" id="personId" required>
-                     </div>
-                  </div>
+                  
                   <div class="form-group">
                      <label for="Password" class="col-sm-2 control-label">LAST NAME</label>
                      <div class="col-sm-10">
