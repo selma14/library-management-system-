@@ -89,13 +89,13 @@
               <a class="nav-link" href="admin.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#bookstable">Books</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#subscribers">subscribers</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="borrowedbooks.php">Issued books</a>
+              <a class="nav-link" href="#bookstable">books</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#borrow">Issued books</a>
             </li>
             <?php } ?>
             <li class="nav-item">
@@ -319,6 +319,57 @@
         </section>
         
         <!-- //BOOKS      -->
+        <!-- ISSUED BOOKS -->
+        <section id="borrow" class="full-height px-lg-5">
+          <div class="container">
+            <h1 class="display-4 fw-bold mt-5" data-aos="fade-up">
+                    <span class="text-brand" style="color:#FCEC52;">Issued books: </span> 
+            </h1>
+            <div class="panel-heading">
+              <div class="row">
+                  <a href="lendbook.php"><button class="btn btn-success col-lg-3 col-md-4 col-sm-11 col-xs-11 button" style="margin-left: 15px;margin-bottom: 5px"><span class="glyphicon glyphicon-plus-sign"></span> Lend Book</button></a>
+              </div>
+            </div>
+            <table class="table table-bordered">
+              <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Book Id</th>
+                    <th>Book Name</th>
+                    <th>Issue Date</th>
+                    <th>Person ID</th>
+                    <th>Actions</th>
+                    <!-- <th>Actions</th> -->
+                  </tr>
+              </thead>
+              <?php
+                  // $sql = "SELECT * FROM borrow"; 	
+                  $sql = "SELECT * FROM books NATURAL JOIN borrow;"; 	
+                  
+                  $query = mysqli_query($conn, $sql);
+                  $counter =1;
+                    while($row = mysqli_fetch_array($query)){
+                      
+                      ?>
+              <tbody>
+                  <tr>
+                    <td><?php echo $counter++; ?></td>
+                    <td><?php echo $row['bookId'];?></td>
+                    <td><?php echo $row['bookTitle'];?></td>
+                    <td><?php echo $row['borrowDate']; ?></td>
+                    <td><?php echo $row['personId']; ?></td>
+                    <td>
+                        <a href="delete_query.php?bookId=<?php echo $row['bookId']?>"> <button class="btn btn-info" data-toggle="modal" >Return</button></a>
+                    </td>
+                    <!-- <td><a href="lendbook.php"> <button class="btn btn-success ">Lend Now</button></a></td> -->
+                  </tr>
+              </tbody>
+              <?php }
+                  ?>
+            </table>
+          </div>
+        </section>
+        <!-- //ISSUED BOOKS -->
         <!-- //CONTENT WRAPPER -->
 
     <script src="../javascript/bootstrap.bundle.min.js"></script>

@@ -21,11 +21,13 @@
          $error = false;
          if($query){
           $error = true;
+          header('Location: admin.php?status=success&message=Subscriber updated successfully.');
          }
          else{
            echo "<script>alert('Registration failed!! Try again.');
                        </script>";
          }
+        
         
    
    }
