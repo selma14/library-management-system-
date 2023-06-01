@@ -66,7 +66,7 @@
                 <a href="bookslist.php"><button class="button-style" style="float: left; ">&nbsp&nbspVIEW BOOKS</button></a>
                 </div>
             </div>
-            <div class="right" style="margin-left: 50px; margin-top: 110px;">
+            <div class="right" style="width:50%;margin-left: 50px; margin-top: 110px;">
                 <form role="form" method="post" action="index.php" enctype="multipart/form-data">
                     <h5>Login</h5>
                     <div class="inputs" style="margin-top: 100px">

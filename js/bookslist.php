@@ -48,17 +48,19 @@
         </p>
 
         <!-- SEARCH BAR -->
-        
-          <input onkeyup="searchBooklist()"  type="text" name="query" class="form-control border-0 rounded-pill shadow-sm" type="search" placeholder="Search..." aria-label="Search" style="width: 80%; margin-left: 100px" id="bookslist-search-input">
-          <br></br>
-        
+        <form method='get' action="bookstable.php" class="d-flex flex-row form-inline mb-4 justify-content-center" style="height:35px">
+          <input type="text" name="query" class="form-control border-0 rounded-pill shadow-sm" type="search" placeholder="Search..." aria-label="Search" style="width: 80%;" id="search-input">
+          <button class="btn btn-secondary rounded-pill border-0 shadow-sm mx-3" type="submit" style="background-color:#9b339c">
+            <i class="bi bi-search -mt-5" style="height:100px;"></i>
+          </button>
+        </form>
         <!--// SEARCH BAR -->
   
-      <table id="bookslist" class="table table-bordered bg-white" style="--bs-bg-opacity: .3; border-color:black; text-align:center">
+      <table id="myTable" class="table table-bordered bg-white" style="--bs-bg-opacity: .3; border-color:black; text-align:center">
          <thead style="background: linear-gradient(rgba(192, 43, 185, 0.8), rgba(73, 4, 90, 0.8)) !important;background-size: cover;background-position: center;color:white;">
             <tr>
                <th>BookId</th>
-               <th class="searchable">bookTitle</th>
+               <th>bookTitle</th>
                <th>author</th>
                <th>publisherName</th>
                <th>pagesNumber</th>
@@ -73,7 +75,7 @@
             while ($row = mysqli_fetch_array($query)) { ?>
          <tbody style="font-weight:bold;">
             <td><?php echo $row['bookId']; ?></td>
-            <td class="searchable"><?php echo $row['bookTitle']; ?></td>
+            <td><?php echo $row['bookTitle']; ?></td>
             <td><?php echo $row['author']; ?></td>
             <td><?php echo $row['publisherName']; ?></td>
             <td><?php echo $row['pagesNumber'] ?></td>
@@ -82,35 +84,8 @@
          <?php 	}
             ?>
       </table>
-      <script>
-                    function searchBooklist() {
-                        // Declare variables
-                        var input, filter, table, tr, td, i, td_bookTitle, txtValue
-                        input = document.getElementById("bookslist-search-input");
-                        filter = input.value.toUpperCase();
-                        table = document.getElementById("bookslist");
-                        tr = table.getElementsByTagName("tr");
-
-                        // Loop through all table rows, and hide those that don't match the search query
-                        for (i = 0; i < tr.length; i++) {
-                        // Only search in firstName and lastName columns
-                        td_bookTitle = tr[i].getElementsByTagName("td")[1];
-                        
-                        if (td_bookTitle) {
-                            txtValue_bookTitle = td_bookTitle.textContent || td_bookTitle.innerText;
-                            
-                            if (
-                            txtValue_bookTitle.toUpperCase().indexOf(filter) > -1 
-                            ) {
-                            tr[i].style.display = "";
-                            } else {
-                            tr[i].style.display = "none";
-                            }
-                        }
-                        }
-                    }
-                    
-      </script>  
+        <!-- //HOME-->
+    <!-- //CONTENT WRAPPER -->
 
     <script src="../javascript/bootstrap.bundle.min.js"></script>
     <script src="../javascript/aos.js"></script>
