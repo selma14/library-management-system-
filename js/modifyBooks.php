@@ -1,7 +1,10 @@
 <?php
 require '../includes/db-inc.php';
 include "../includes/header.php";
+
 $personId = $_POST['bookId'];
+$bookId = $_POST['bookId'];
+
 
 $sql = "SELECT * FROM books WHERE bookId = '$bookId'";
 $query = mysqli_query($conn, $sql);
@@ -59,4 +62,3 @@ $row = mysqli_fetch_assoc($query);
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </html>
-
