@@ -6,19 +6,19 @@
    
     $title = $_POST['title'];
     $author = $_POST['author'];
-    
+    $id = $_POST['id'];
     $publisher = $_POST['publisher'];
     $copies = $_POST['copies'];
     $pages = $_POST['pages'];
 
-    $sql = "INSERT INTO books(bookTitle, author,  publisherName, copiesNumber, pagesNumber)
-                 values ('$title','$author', '$publisher','$copies','$pages')";
+    $sql = "INSERT INTO books(bookTitle, author, bookId, publisherName, copiesNumber, pagesNumber)
+                 values ('$title','$author','$id', '$publisher','$copies','$pages')";
     
     $query = mysqli_query($conn, $sql);
 
     if($query){
         echo "<script>alert('New Book has been added ');
-                 location.href ='admin.php';
+                location.href ='bookstable.php';
                  </script>";
     }
     else {
@@ -42,13 +42,18 @@
     <link rel="stylesheet" href="../css/styling.css" />
     <link rel="stylesheet" href="../css/stylesIbti.css" />
   </head>
-  <body  data-bs-spy="scroll" data-bs-target=".navbar" class="body-navbar d-flex align-items-center justify-content-center" style="background-color: #B4A0E5;">
+<body  data-bs-spy="scroll" data-bs-target=".navbar" class="d-flex align-items-center justify-content-center" style="background-color: #B4A0E5;">
   <div class="container  col-lg-9 col-md-11 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0  " style="margin-top: 20px">
    <div style="font-size: 13px;" class="jumbotron login2 col-lg-10 col-md-11 col-sm-12 col-xs-12">
       <p class="page-header text-dark" style="text-align: center; font-weight: bold; font-size: 23px;">ADD BOOK</p>
       <div class="container">
          <form class="form-horizontal" role="form" enctype="multipart/form-data" action="addbook.php" method="post">
-            
+<div class="form-group">
+               <label for="id" class="col-sm-2 control-label text-dark">BOOK ID</label>
+               <div class="col-sm-10">
+                  <input type="text" class="addbookInput form-control" name="id" placeholder="Enter Book Id" id="password" required>
+               </div>
+            </div>
             <div class="form-group">
                <label for="title" class="col-sm-2 control-label text-dark">BOOK TITLE</label>
                <div class="col-sm-10">
@@ -79,12 +84,10 @@
                   <input type="text" class="addbookInput form-control" name="copies" placeholder="Enter Copies Number" id="password" required>
                </div>
             </div>
-            <div class="form-group">
-               <div class="col-sm-10 d-flex justify-content-end">
+<div class="modal-footer">
                   <button  name="submit" class="btn col-lg-4 mt-5" style="font-size: 13px;background-color: #B4A0E5;" data-toggle="modal" data-target="#info" >
                   ADD BOOK
                   </button>
-               </div>
             </div>
          </form>
       </div>

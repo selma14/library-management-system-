@@ -10,16 +10,16 @@ $copies = $_POST['copies'];
 $pages = $_POST['pages'];
 
 // Update the Book's information in the database
-$sql = "UPDATE books SET bookTitle='$title', author='$author', publisherName='$publisher', copiesNumber='$copies', pagesNumber='$pages' WHERE bookId='$bookId'";
+$sql = "UPDATE books SET bookTitle='$title', author='$author', publisherName='$publisher', copiesNumber='$copies', pagesNumber='$pages', booksNumber='$booksNumber' WHERE bookId='$bookId'";
 $query = mysqli_query($conn, $sql);
 
 if($query) {
     echo "<script>alert('Book updated');
-    location.href ='admin.php';
+    location.href ='bookstable.php';
     </script>";
 } else {
     echo "<script>alert('Book update failed');
-    location.href ='admin.php';
+    location.href ='bookstable.php';
     </script>";;
 }
 ?>
